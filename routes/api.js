@@ -1,4 +1,3 @@
-
 const MONGODB_KEY ="mongodb+srv://backendconcoxdeveloper:V3jUV7QXqEoAtnhy@cluster0-zhjde.mongodb.net";
 const mongoose=require('mongoose');
 mongoose.connect(MONGODB_KEY, { useNewUrlParser: true})
@@ -30,12 +29,14 @@ const findLocation = (devices, statusCollection) => {
 }
 
 router.post('/:collect1', async(req, res) => {
-    const uri = "mongodb+srv://backendconcoxdeveloper:V3jUV7QXqEoAtnhy@cluster0-zhjde.mongodb.net"
+    const uri = req.body.uri
+    console.log(uri)
     const collection1 = req.params.collect1
     const collection2 = req.query.collect2
     console.log(uri, collection1, collection2)
 
     let devices = []
+    let finalResult = []
 
     try {
         const devicesCollection = db.collection(collection1)
@@ -81,4 +82,4 @@ router.post('/',(req,res)=>{
     res.end('Successful POST Request');
 })
 
-module.exports=router
+module.exports=router;
